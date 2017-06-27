@@ -1,2 +1,4 @@
 .idea
-JavaRushPlugin.properties
+/JavaRushPlugin.properties
+Would skip repository JavaRush/
+out/
