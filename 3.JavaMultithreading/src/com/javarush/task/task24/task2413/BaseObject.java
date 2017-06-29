@@ -1,6 +1,5 @@
 package com.javarush.task.task24.task2413;
 
-import java.awt.geom.Point2D;
 
 /**
  * Created by Илья Борозденец on 28.06.2017.
@@ -19,9 +18,11 @@ abstract class BaseObject {
     public abstract void move ();
 
     public boolean isIntersec (BaseObject o) {
-        if (Point2D.distance(x, y, o.getX(), o.getY()) <= Math.max(radius, o.getRadius()))
-            return true;
-        else return false;
+        double dx = x - o.x;
+        double dy = y - o.y;
+        double destination = Math.sqrt(dx * dx + dy * dy);
+        double destination2 = Math.max(radius, o.radius);
+        return destination <= destination2;
     }
 
     public double getX() {

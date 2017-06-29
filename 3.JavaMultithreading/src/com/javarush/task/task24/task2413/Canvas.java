@@ -23,13 +23,13 @@ public class Canvas {
     }
 
     public void drawMatrix(double x, double y, int[][] matrix, char c) {
-        int ix = (int) x;
-        int iy = (int) y;
+        int height = matrix.length;
+        int width = matrix[0].length;
 
-        for (int i = iy; i < matrix[0].length; i++) {
-            for (int j = ix; j < matrix.length; j++) {
-                if (matrix[i][j] != 0)
-                    setPoint((double) ix + j, (double) iy + i, c);
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (matrix[i][j] == 1)
+                    setPoint(x + j, y + i, c);
             }
         }
     }

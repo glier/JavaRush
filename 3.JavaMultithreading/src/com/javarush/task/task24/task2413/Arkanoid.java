@@ -44,7 +44,6 @@ public class Arkanoid {
             if (ball.isIntersec(brick)) {
                 double angle = Math.random() * 360;
                 ball.setDirection(angle);
-
                 bricks.remove(brick);
             }
         }
