@@ -39,7 +39,7 @@ public class Arkanoid {
         }
     }
 
-    void checkBricksBump() {
+    public void checkBricksBump() {
         for (Brick brick : new ArrayList<Brick>(bricks)) {
             if (ball.isIntersec(brick)) {
                 double angle = Math.random() * 360;
@@ -49,7 +49,7 @@ public class Arkanoid {
         }
     }
 
-    void checkStandBump() {
+    public void checkStandBump() {
         if (ball.isIntersec(stand)) {
             double angle = 90 + 20 * (Math.random() - 0.5);
             ball.setDirection(angle);
