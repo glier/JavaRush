@@ -33,12 +33,21 @@ public class Cat implements Pet {
         class CatPet implements Sayable {
             @Override
             public String say() {
-                if (i < 1) {
-
+                String result;
+                if (i >= 1) {
+                    StringBuilder sb = new StringBuilder(name);
+                    sb.append(" говорит м");
+                    for (int j = 0; j < i; j++) {
+                        sb.append("я");
+                    }
+                    sb.append("у!");
+                    result = sb.toString();
+                } else {
+                    result = name + " спит.";
                 }
-                return null;
+                return result;
             }
         }
-
+        return new CatPet();
     }
 }
