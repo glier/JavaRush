@@ -3,6 +3,9 @@
     <output-path>$PROJECT_DIR$/out/artifacts/3_JavaMultithreading_jar</output-path>
     <root id="archive" name="3.JavaMultithreading.jar">
       <element id="module-output" name="3.JavaMultithreading" />
+      <element id="archive" name="ChatServer.jar">
+        <element id="dir-copy" path="$PROJECT_DIR$/3.JavaMultithreading/src/com/javarush/task/task30/task3008" />
+      </element>
     </root>
   </artifact>
 </component>
