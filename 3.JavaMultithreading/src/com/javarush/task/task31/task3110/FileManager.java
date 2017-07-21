@@ -28,9 +28,13 @@ public class FileManager {
         if (Files.isRegularFile(path)) {
             fileList.add(path.toAbsolutePath());
         } else if (Files.isDirectory(path)) {
-            DirectoryStream directoryStream = Files.newDirectoryStream(path);
+            DirectoryStream<Path> directoryStream = Files.newDirectoryStream(path);
 
-            //for (Path path1 : directoryStream)
+            for (Path nextPath : directoryStream) {
+                collectFileList(nextPath);
+            }
+
+            directoryStream.close();
         }
     }
 }
