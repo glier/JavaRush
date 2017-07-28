@@ -6,21 +6,17 @@ import com.javarush.task.task31.task3110.ZipFileManager;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-/**
- * Created by Борозденец on 21.07.2017.
- * Команда удаления файла из архива 
- */
 public class ZipRemoveCommand extends ZipCommand {
     @Override
     public void execute() throws Exception {
-        ConsoleHelper.writeMessage("Файл архива:");
+        ConsoleHelper.writeMessage("Удаление файла из архива.");
 
         ZipFileManager zipFileManager = getZipFileManager();
 
-        ConsoleHelper.writeMessage("Файл, который удалить из архива:");
-        Path deleteFilePath = Paths.get(ConsoleHelper.readString());
-        zipFileManager.removeFile(deleteFilePath);
+        ConsoleHelper.writeMessage("Введите полный путь файла в архиве:");
+        Path sourcePath = Paths.get(ConsoleHelper.readString());
+        zipFileManager.removeFile(sourcePath);
 
-        ConsoleHelper.writeMessage("Операция завершена.");
+        ConsoleHelper.writeMessage("Удаление из архива завершено.");
     }
 }
