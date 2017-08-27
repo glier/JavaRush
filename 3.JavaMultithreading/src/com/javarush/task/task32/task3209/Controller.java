@@ -1,7 +1,6 @@
 package com.javarush.task.task32.task3209;
 
 
-
 import javax.swing.*;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
@@ -102,10 +101,9 @@ public class Controller {
     }
 
     public void saveDocument() {
-        if(currentFile == null) {
+        if (currentFile == null) {
             saveDocumentAs();
-        }
-        else {
+        } else {
             view.selectHtmlTab();
             try (FileWriter fileWriter = new FileWriter(currentFile)) {
                 new HTMLEditorKit().write(fileWriter, document, 0, document.getLength());
