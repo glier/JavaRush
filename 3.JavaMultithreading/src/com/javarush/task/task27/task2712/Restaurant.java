@@ -19,9 +19,5 @@ public class Restaurant {
 
         System.out.println(tablet.createOrder());
 
-
-
-
-
     }
 }
