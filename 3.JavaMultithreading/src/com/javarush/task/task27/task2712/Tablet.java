@@ -24,17 +24,17 @@ public class Tablet extends Observable{
             Order order = new Order(this);
 
             if (!order.isEmpty()) {
-
-                new AdvertisementManager(order.getTotalCookingTime() * 60).processVideos();
-
+                try {
+                    new AdvertisementManager(order.getTotalCookingTime() * 60).processVideos();
+                }
+                catch (NoVideoAvailableException e) {
+                    logger.log(Level.INFO, "No video is available for the order " + order);
+                }
                 setChanged();
                 notifyObservers(order);
                 return order;
             }
 
-        }
-        catch (NoVideoAvailableException e) {
-            logger.log(Level.INFO, "No video is available for the order " + e);
         }
         catch (IOException e) {
             logger.log(Level.SEVERE, "Console is unavailable.");
