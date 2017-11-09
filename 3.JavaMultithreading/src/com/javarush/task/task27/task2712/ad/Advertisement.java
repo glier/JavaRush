@@ -37,4 +37,9 @@ public class Advertisement {
             --hits;
         }
     }
+
+    public int getHits()
+    {
+        return hits;
+    }
 }

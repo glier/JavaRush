@@ -19,5 +19,13 @@ public class Restaurant {
 
         System.out.println(tablet.createOrder());
 
+        DirectorTablet directorTablet = new DirectorTablet();
+
+        directorTablet.printAdvertisementProfit();
+        directorTablet.printCookWorkloading();
+        directorTablet.printArchivedVideoSet();
+        directorTablet.printActiveVideoSet();
+
+
     }
 }
