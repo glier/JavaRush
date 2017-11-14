@@ -1,9 +1,12 @@
 package com.javarush.task.task27.task2712.statistic;
 
 import com.javarush.task.task27.task2712.kitchen.Cook;
+import com.javarush.task.task27.task2712.statistic.event.CookedOrderEventDataRow;
 import com.javarush.task.task27.task2712.statistic.event.EventDataRow;
 import com.javarush.task.task27.task2712.statistic.event.EventType;
+import com.javarush.task.task27.task2712.statistic.event.VideoSelectedEventDataRow;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class StatisticManager {
@@ -35,6 +38,10 @@ public class StatisticManager {
         private void put(EventDataRow data) {
             storage.get(data.getType()).add(data);
         }
+
+        private Map<EventType, List<EventDataRow>> getStorage() {
+            return storage;
+        }
     }
 
     public void register(EventDataRow data) {
@@ -45,7 +52,48 @@ public class StatisticManager {
         cooks.add(cook);
     }
 
+    public Map<String, Double> getVideoStatistic() {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+        Map<EventType, List<EventDataRow>> storageMap = statisticStorage.getStorage();
+        List<EventDataRow> list = storageMap.get(EventType.SELECTED_VIDEOS);
+
+        Map<String, Double> map = new TreeMap<>(Collections.reverseOrder());
+
+        for (EventDataRow event : list)
+        {
+            VideoSelectedEventDataRow videoSelectedEvent = (VideoSelectedEventDataRow) event;
+            String date = dateFormat.format(videoSelectedEvent.getDate());
+            double amount = (double) videoSelectedEvent.getAmount() / 100;
+
+            if (map.containsKey(date))
+            {
+                map.put(date, map.get(date) + amount);
+            } else
+            {
+                map.put(date, amount);
+            }
+        }
+        return map;
+    }
+
+    public Map<String, Map<String, Integer>> getCooksWorkStatistic() {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+        Map<EventType, List<EventDataRow>> storageMap = statisticStorage.getStorage();
+        List<EventDataRow> list = storageMap.get(EventType.COOKED_ORDER);
+
+        Map<String, Map<String, Integer>> result = new TreeMap<>(Collections.reverseOrder());
+        Map<String, Integer> cooksTime = new TreeMap<>();
+
+        for (EventDataRow event : list) {
+            CookedOrderEventDataRow cookedOrderEventDataRow = (CookedOrderEventDataRow) event;
+            String date = dateFormat.format(cookedOrderEventDataRow.getDate());
 
 
+        }
+
+        return result;
+    }
 
 }
