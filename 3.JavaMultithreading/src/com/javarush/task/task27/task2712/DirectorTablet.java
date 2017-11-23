@@ -2,6 +2,7 @@ package com.javarush.task.task27.task2712;
 
 import com.javarush.task.task27.task2712.statistic.StatisticManager;
 
+import java.util.Collections;
 import java.util.Map;
 
 public class DirectorTablet {
@@ -19,7 +20,20 @@ public class DirectorTablet {
         System.out.println(String.format("Total - %.2f", totalAmount));
     }
 
-    public void printCookWorkloading() {}
+    public void printCookWorkloading() {
+        Map<String, Map<String, Integer>> result = StatisticManager.getInstance().getCooksWorkStatistic();
+
+
+        for (Map.Entry<String, Map<String, Integer>> entry1 : result.entrySet())
+        {
+            System.out.println(entry1.getKey());
+            for (Map.Entry<String, Integer> entry2 : entry1.getValue().entrySet())
+            {
+                System.out.println(entry2.getKey() + " - " + entry2.getValue() + " min");
+            }
+        }
+
+    }
 
     public void printActiveVideoSet() {}
 

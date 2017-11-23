@@ -86,11 +86,31 @@ public class StatisticManager {
         Map<String, Map<String, Integer>> result = new TreeMap<>(Collections.reverseOrder());
         Map<String, Integer> cooksTime = new TreeMap<>();
 
-        for (EventDataRow event : list) {
-            CookedOrderEventDataRow cookedOrderEventDataRow = (CookedOrderEventDataRow) event;
-            String date = dateFormat.format(cookedOrderEventDataRow.getDate());
+        for (EventDataRow event : list)
+        {
+            CookedOrderEventDataRow cookedOrderEvent = (CookedOrderEventDataRow) event;
+            String date = dateFormat.format(cookedOrderEvent.getDate());
+            String cookName = cookedOrderEvent.getCookName();
+            int cookingTime = cookedOrderEvent.getTime();
+            int cookingTimeMin = (cookingTime % 60 == 0) ? (cookingTime / 60) : (cookingTime / 60 + 1);
 
-
+            if (result.containsKey(date))
+            {
+                Map<String, Integer> temp = result.get(date);
+                if (temp.containsKey(cookName))
+                {
+                    temp.put(cookName, temp.get(cookName) + cookingTimeMin);
+                } else
+                {
+                    temp.put(cookName, cookingTimeMin);
+                }
+                result.put(date, temp);
+            } else
+            {
+                Map<String, Integer> temp = new TreeMap<>();
+                temp.put(cookName, cookingTimeMin);
+                result.put(date, temp);
+            }
         }
 
         return result;
