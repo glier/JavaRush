@@ -1,8 +1,11 @@
 package com.javarush.task.task27.task2712;
 
+import com.javarush.task.task27.task2712.ad.Advertisement;
+import com.javarush.task.task27.task2712.ad.StatisticAdvertisementManager;
 import com.javarush.task.task27.task2712.statistic.StatisticManager;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public class DirectorTablet {
@@ -35,8 +38,22 @@ public class DirectorTablet {
 
     }
 
-    public void printActiveVideoSet() {}
+    public void printActiveVideoSet() {
+        StatisticAdvertisementManager statisticAdvertisementManager = StatisticAdvertisementManager.getInstance();
+        List<Advertisement> listAd = statisticAdvertisementManager.getVideoSet(true);
 
-    public void printArchivedVideoSet() {}
+        for (Advertisement ad: listAd) {
+            ConsoleHelper.writeMessage(ad.getName() + " - " + ad.getHits());
+        }
+    }
+
+    public void printArchivedVideoSet() {
+        StatisticAdvertisementManager statisticAdvertisementManager = StatisticAdvertisementManager.getInstance();
+        List<Advertisement> listAd = statisticAdvertisementManager.getVideoSet(false);
+
+        for (Advertisement ad: listAd) {
+            ConsoleHelper.writeMessage(ad.getName());
+        }
+    }
 
 }
