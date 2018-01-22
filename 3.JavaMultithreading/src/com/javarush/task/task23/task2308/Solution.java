@@ -1,6 +1,6 @@
 package com.javarush.task.task23.task2308;
 
-import jdk.nashorn.internal.ir.annotations.Immutable;
+//import jdk.nashorn.internal.ir.annotations.Immutable;
 
 /*
 Рефакторинг, вложенные классы
