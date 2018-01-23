@@ -128,11 +128,15 @@ public class Model {
     }
 
     public void down() {
-
+        
         rotate();
         rotate();
         rotate();
         left();
         rotate();
     }
+
+    
+
+
 }
